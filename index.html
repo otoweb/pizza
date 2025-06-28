@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Montaña Rusa - Pizzería a Domicilio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-     <link rel="icon" href="https://serverapolo.ddns.net/img/rusa.png" type="image/png">
+     <link rel="icon" href="https://www.novachef.es/media/images/pizza-pepperoni.jpg" type="image/jpg">
     <style>
         * {
             margin: 0;
@@ -26,6 +26,27 @@
             --whatsapp: #25D366;
             --open: #2ecc71;
             --closed: #e74c3c;
+        }
+
+         #notificacion {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #262728;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: none;
+            z-index: 1000;
+        }
+        
+        .cerrar {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            cursor: pointer;
         }
         
         body {
@@ -457,6 +478,13 @@
     </style>
 </head>
 <body>
+     <!-- Contenedor de la notificación -->
+    <div id="notificacion">
+        <span class="cerrar" id="cerrarNotificacion">&times;</span>
+        <strong>¡Bienvenido!</strong> Los Pedidos se pueden recoger desde las primeras horas del dia.
+    </div>
+
+
     <!-- Header Section -->
     <header>
         <div class="logo-container">
@@ -488,9 +516,9 @@
                 <div class="product-card">
                     <div class="product-image" style="background-image: url('https://serverapolo.ddns.net/img/doblequeso.jpg');"></div>
                     <div class="product-content">
-                        <h3>Doble Queso <span class="product-price"> 1200 CUP</span></h3>
+                        <h3>Dobl Queso <span class="product-price"> 1200 CUP</span></h3>
                         <p>La clásica pizza con salsa de tomate y queso</p>
-                        <a href="#" class="whatsapp-btn" data-product="Doble Queso" data-price="1200 CUP">
+                        <a href="#" class="whatsapp-btn" data-product="Dobl Queso" data-price="1200 CUP">
                             <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
                         </a>
                     </div>
@@ -825,6 +853,22 @@
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
+            });
+        });
+
+        // Mostrar notificación al cargar la página
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const notificacion = document.getElementById('notificacion');
+            notificacion.style.display = 'block';
+            
+            // Ocultar automáticamente después de 5 segundos
+            setTimeout(() => {
+                notificacion.style.display = 'none';
+            }, 10000);
+            
+            // Cerrar manualmente
+            document.getElementById('cerrarNotificacion').addEventListener('click', () => {
+                notificacion.style.display = 'none';
             });
         });
         
